@@ -28,6 +28,16 @@ function toggleAutoJump() {
     }
 }
 
+var loader = new THREE.TextureLoader();
+var materialArray = [
+    new THREE.MeshBasicMaterial({map: loader.load("img/top.jpg")}),
+    new THREE.MeshBasicMaterial({map: loader.load("img/bottom.jpg")}),
+    new THREE.MeshBasicMaterial({map: loader.load("img/side1.jpg")}),
+    new THREE.MeshBasicMaterial({map: loader.load("img/side2.jpg")}),
+    new THREE.MeshBasicMaterial({map: loader.load("img/side3.jpg")}),
+    new THREE.MeshBasicMaterial({map: loader.load("img/side4.jpg")})
+];
+
 function Block(x, y, z) {
     this.x = x;
     this.y = y;
@@ -35,8 +45,8 @@ function Block(x, y, z) {
 
     this.display = function() {
         var blockBox = new THREE.BoxBufferGeometry(5, 5, 5);
-        var blockMesh = new THREE.MeshBasicMaterial({color : 0x00ff00});
-        var block = new THREE.Mesh(blockBox, blockMesh);
+        //var blockMesh = new THREE.MeshBasicMaterial({color : 0x00ff00});
+        var block = new THREE.Mesh(blockBox, materialArray);
         scene.add(block);
         block.position.x = this.x;
         block.position.y = this.y - 10;
