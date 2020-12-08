@@ -30,12 +30,12 @@ function toggleAutoJump() {
 
 var loader = new THREE.TextureLoader();
 var materialArray = [
-    new THREE.MeshBasicMaterial({map: loader.load("top.jpg")}),
-    new THREE.MeshBasicMaterial({map: loader.load("bottom.jpg")}),
-    new THREE.MeshBasicMaterial({map: loader.load("side1.jpg")}),
-    new THREE.MeshBasicMaterial({map: loader.load("side2.jpg")}),
-    new THREE.MeshBasicMaterial({map: loader.load("side3.jpg")}),
-    new THREE.MeshBasicMaterial({map: loader.load("side4.jpg")})
+    new THREE.MeshBasicMaterial({map: loader.load("top.png")}),
+    new THREE.MeshBasicMaterial({map: loader.load("bottom.png")}),
+    new THREE.MeshBasicMaterial({map: loader.load("side1.png")}),
+    new THREE.MeshBasicMaterial({map: loader.load("side2.png")}),
+    new THREE.MeshBasicMaterial({map: loader.load("side3.png")}),
+    new THREE.MeshBasicMaterial({map: loader.load("side4.png")})
 ];
 
 function Block(x, y, z) {
