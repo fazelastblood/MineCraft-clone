@@ -30,12 +30,12 @@ function toggleAutoJump() {
 
 var loader = new THREE.TextureLoader();
 var materialArray = [
-    new THREE.MeshBasicMaterial({map: loader.load("top.png")}),
-    new THREE.MeshBasicMaterial({map: loader.load("bottom.png")}),
-    new THREE.MeshBasicMaterial({map: loader.load("side1.png")}),
-    new THREE.MeshBasicMaterial({map: loader.load("side2.png")}),
-    new THREE.MeshBasicMaterial({map: loader.load("side3.png")}),
-    new THREE.MeshBasicMaterial({map: loader.load("side4.png")})
+    new THREE.MeshBasicMaterial({map: loader.load("https://raw.githubusercontent.com/fazelastblood/MineCraft-clone/main/top.png")}),
+    new THREE.MeshBasicMaterial({map: loader.load("https://raw.githubusercontent.com/fazelastblood/MineCraft-clone/main/bottom.png")}),
+    new THREE.MeshBasicMaterial({map: loader.load("https://raw.githubusercontent.com/fazelastblood/MineCraft-clone/main/side1.png")}),
+    new THREE.MeshBasicMaterial({map: loader.load("https://raw.githubusercontent.com/fazelastblood/MineCraft-clone/main/side2.png")}),
+    new THREE.MeshBasicMaterial({map: loader.load("https://raw.githubusercontent.com/fazelastblood/MineCraft-clone/main/side3.png")}),
+    new THREE.MeshBasicMaterial({map: loader.load("https://raw.githubusercontent.com/fazelastblood/MineCraft-clone/main/side4.png")})
 ];
 
 function Block(x, y, z) {
