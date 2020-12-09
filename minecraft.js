@@ -112,7 +112,7 @@ function Block(x, y, z) {
 
     for(var i = 0; i < chunks.length; i++){
         for(var j = 0; j < chunks[i].length; j++){
-            chunks.display();
+            chunks[i][j].display();
         }
     }
 
