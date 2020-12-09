@@ -81,32 +81,40 @@ function Block(x, y, z) {
         }
         
         for(var i = 0; i <blocks.length; i++) {
-            blocks[i].display();
+            chunks[i][j].display();
         }
         */
 
-        var chunks = [];
-        var xoff = 0;
-		var zoff = 0;
-        var inc = 0.05;
-        var amplitude = 50 + (Math.random() * 70);
-        var renderDistence = 3;
-        var chunkSize = 16;
-        camera.position.x = renderDistence * chunkSize / 2 * 5;
-        camera.position.z = renderDistence * chunkSize / 2 * 5;
-        camera.position.y = 50;
+       var chunks = [];
+       var xoff = 0;
+       var zoff = 0;
+       var inc = 0.05;
+       var amplitude = 30 + (Math.random() * 70);
+       var renderDistance = 10;
+       var chunkSize = 10;
+       camera.position.x = renderDistance * chunkSize / 2 * 5;
+       camera.position.z = renderDistance * chunkSize / 2 * 5;
+       camera.position.y = 50;
         for (var i = 0; i < renderDistence; i++) {
             var chunk = [];
             for(j = 0; j < renderDistence; j++) {
                 for (var x = i * chunkSize; x < (j * chunkSize) + chunkSize; x++) {
-                    xoff = inc * x;
-                    zoff = inc * z;
-                    var v = Math.round(noise.perlin2(xoff, zoff) * amplitude / 5) * 5;
-                    chunk.push(new Block(x * 5, v, z * 5));
+                    for(var z = j * chunkSize; z < (j * chunkSize) + chunkSize; z++) {
+                        xoff = inc * x;
+                        zoff = inc * z;
+                        var v = Math.round(noise.perlin2(xoff, zoff) * amplitude / 5) * 5;
+                        chunk.push(new Block(x * 5, v, z * 5));
                 }
             }
         }
         chunks.push(chunk);
+    }
+
+    for(var i = 0; i < chunks.length; i++){
+        for(var j = 0; j < chunks[i].length; j++){
+            chunks[i][j].display();
+        }
+    }
 
 
         var keys = [];
@@ -147,10 +155,12 @@ function update() {
     if(keys.includes("w")){
         controls.moveForward(movingSpeed);
         if(autoJump == false) {
-            for(var i = 0; i < blocks.length; i++) {
-                if(camera.position.x <= blocks[i].x + 2.5 && camera.position.x >= blocks[i].x - 2.5 && camera.position.z <= blocks[i].z + 2.5 && camera.position.z >= blocks[i].z - 2.5) {
-                    if(camera.position.y == blocks[i].y - 2.5) {
-                        controls.moveForward(-1 * movingSpeed)
+            for(var i = 0; i < chunks.length; i++) {
+                for(var j = 0; j < chunks[i].length; j++) {
+                    if(camera.position.x <= chunks[i][j].x + 2.5 && camera.position.x >= chunks[i][j].x - 2.5 && camera.position.z <= chunks[i][j].z + 2.5 && camera.position.z >= chunks[i][j].z - 2.5) {
+                        if(camera.position.y == chunks[i][j].y - 2.5) {
+                            controls.moveForward(-1 * movingSpeed)
+                        }
                     }
                 }
             }
@@ -159,10 +169,12 @@ function update() {
     if(keys.includes("a")){
         controls.moveRight(-1 * movingSpeed);
         if(autoJump == false) {
-            for(var i = 0; i < blocks.length; i++) {
-                if(camera.position.x <= blocks[i].x + 2.5 && camera.position.x >= blocks[i].x - 2.5 && camera.position.z <= blocks[i].z + 2.5 && camera.position.z >= blocks[i].z - 2.5) {
-                    if(camera.position.y == blocks[i].y - 2.5) {
-                        controls.moveRight(movingSpeed)
+            for(var i = 0; i < chunks.length; i++) {
+                for(var j = 0; j < chunks[i].length; j++) {
+                    if(camera.position.x <= chunks[i][j].x + 2.5 && camera.position.x >= chunks[i][j].x - 2.5 && camera.position.z <= chunks[i][j].z + 2.5 && camera.position.z >= chunks[i][j].z - 2.5) {
+                        if(camera.position.y == chunks[i][j].y - 2.5) {
+                            controls.moveRight(movingSpeed)
+                        }
                     }
                 }
             }
@@ -171,10 +183,12 @@ function update() {
     if(keys.includes("s")){
         controls.moveForward(-1 * movingSpeed);
         if(autoJump == false) {
-            for(var i = 0; i < blocks.length; i++) {
-                if(camera.position.x <= blocks[i].x + 2.5 && camera.position.x >= blocks[i].x - 2.5 && camera.position.z <= blocks[i].z + 2.5 && camera.position.z >= blocks[i].z - 2.5) {
-                    if(camera.position.y == blocks[i].y - 2.5) {
-                        controls.moveForward(movingSpeed)
+            for(var i = 0; i < chunks.length; i++) {
+                for(var j = 0; j < chunks[i].length; j++) {
+                    if(camera.position.x <= chunks[i][j].x + 2.5 && camera.position.x >= chunks[i][j].x - 2.5 && camera.position.z <= chunks[i][j].z + 2.5 && camera.position.z >= chunks[i][j].z - 2.5) {
+                        if(camera.position.y == chunks[i][j].y - 2.5) {
+                            controls.moveForward(movingSpeed)
+                        }
                     }
                 }
             }
@@ -183,10 +197,12 @@ function update() {
     if(keys.includes("d")){
         controls.moveRight(movingSpeed);
         if (autoJump == false) {
-            for(var i = 0; i < blocks.length; i++) {
-                if(camera.position.x <= blocks[i].x + 2.5 && camera.position.x >= blocks[i].x - 2.5 && camera.position.z <= blocks[i].z + 2.5 && camera.position.z >= blocks[i].z - 2.5) {
-                    if(camera.position.y == blocks[i].y - 2.5) {
-                        controls.moveRight(-1 * movingSpeed)
+            for(var i = 0; i < chunks.length; i++) {
+                for(var j = 0; j < chunks[i].length; j++) {
+                    if(camera.position.x <= chunks[i][j].x + 2.5 && camera.position.x >= chunks[i][j].x - 2.5 && camera.position.z <= chunks[i][j].z + 2.5 && camera.position.z >= chunks[i][j].z - 2.5) {
+                        if(camera.position.y == chunks[i][j].y - 2.5) {
+                            controls.moveRight(-1 * movingSpeed)
+                        }
                     }
                 }
             }
@@ -196,13 +212,15 @@ function update() {
     camera.position.y = camera.position.y - ySpeed;
     ySpeed = ySpeed + acc;
 
-    for(var i = 0; i < blocks.length; i++) {
-        if(camera.position.x <= blocks[i].x + 2.5 && camera.position.x >= blocks[i].x - 2.5 && camera.position.z <= blocks[i].z + 2.5 && camera.position.z >= blocks[i].z - 2.5) {
-            if(camera.position.y <= blocks[i].y + 2.5 && camera.position.y >= blocks[i].y - 2.5) {
-                camera.position.y = blocks[i].y + 2.5;
-                ySpeed = 0;
-                canJump = true;
-                break;
+    for(var i = 0; i < chunks.length; i++) {
+        for(var j = 0; j < chunks[i].length; j++){
+            if(camera.position.x <= chunks[i][j].x + 2.5 && camera.position.x >= chunks[i][j].x - 2.5 && camera.position.z <= chunks[i][j].z + 2.5 && camera.position.z >= chunks[i][j].z - 2.5) {
+                if(camera.position.y <= chunks[i][j].y + 2.5 && camera.position.y >= chunks[i][j].y - 2.5) {
+                    camera.position.y = chunks[i][j].y + 2.5;
+                    ySpeed = 0;
+                    canJump = true;
+                    break;
+                }
             }
         }
     }
