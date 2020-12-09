@@ -90,14 +90,14 @@ function Block(x, y, z) {
        var zoff = 0;
        var inc = 0.05;
        var amplitude = 30 + (Math.random() * 70);
-       var renderDistance = 10;
+       var renderDistance = 3;
        var chunkSize = 10;
        camera.position.x = renderDistance * chunkSize / 2 * 5;
        camera.position.z = renderDistance * chunkSize / 2 * 5;
        camera.position.y = 50;
-        for (var i = 0; i < renderDistence; i++) {
+        for (var i = 0; i < renderDistance; i++) {
             var chunk = [];
-            for(j = 0; j < renderDistence; j++) {
+            for(j = 0; j < renderDistance; j++) {
                 for (var x = i * chunkSize; x < (j * chunkSize) + chunkSize; x++) {
                     for(var z = j * chunkSize; z < (j * chunkSize) + chunkSize; z++) {
                         xoff = inc * x;
