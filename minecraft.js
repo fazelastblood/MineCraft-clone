@@ -90,8 +90,8 @@ function Block(x, y, z) {
        var zoff = 0;
        var inc = 0.05;
        var amplitude = 30 + (Math.random() * 70);
-       var renderDistance = 3;
-       var chunkSize = 10;
+       var renderDistance = 10;
+       var chunkSize = 15;
        camera.position.x = renderDistance * chunkSize / 2 * 5;
        camera.position.z = renderDistance * chunkSize / 2 * 5;
        camera.position.y = 50;
