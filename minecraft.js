@@ -1,7 +1,7 @@
 noise.seed(Math.random());
 
 var scene = new THREE.Scene();
-scene.background = new THREE.Color(0x00ffff);
+scene.background = new THREE.Color(0x00ffff)
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
@@ -65,7 +65,7 @@ function Block(x, y, z) {
 //var axesHelper = new THREE.AxesHelper( 5 );
 //scene.add(axesHelper);
 
-var blocks = [];
+        /*var blocks = [];
 		var xoff = 0;
 		var zoff = 0;
         var inc = 0.05;
@@ -83,6 +83,31 @@ var blocks = [];
         for(var i = 0; i <blocks.length; i++) {
             blocks[i].display();
         }
+        */
+
+        var chunks = [];
+        var xoff = 0;
+		var zoff = 0;
+        var inc = 0.05;
+        var amplitude = 50 + (Math.random() * 70);
+        var renderDistence = 3;
+        var chunkSize = 16;
+        camera.position.x = renderDistence * chunkSize / 2 * 5;
+        camera.position.z = renderDistence * chunkSize / 2 * 5;
+        camera.position.y = 50;
+        for (var i = 0; i < renderDistence; i++) {
+            var chunk = [];
+            for(j = 0; j < renderDistence; j++) {
+                for (var x = i * chunkSize; x < (j * chunkSize) + chunkSize; x++) {
+                    xoff = inc * x;
+                    zoff = inc * z;
+                    var v = Math.round(noise.perlin2(xoff, zoff) * amplitude / 5) * 5;
+                    chunk.push(new Block(x * 5, v, z * 5));
+                }
+            }
+        }
+        chunks.push(chunk);
+
 
         var keys = [];
         var canJump = true;
